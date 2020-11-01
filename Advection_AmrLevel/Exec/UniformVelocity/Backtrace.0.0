@@ -1,0 +1,61 @@
+=== If no file names and line numbers are shown below, one can run
+            addr2line -Cpfie my_exefile my_line_address
+    to convert `my_line_address` (e.g., 0x4a6b) into file name and line number.
+    Or one can use amrex/Tools/Backtrace/parse_bt.py.
+
+=== Please note that the line number reported by addr2line may not be accurate.
+    One can use
+            readelf -wl my_exefile | grep my_line_address'
+    to find out the offset for that line.
+
+ 0: ./main2d.gnu.OMP.ex(+0x109834) [0x55fd38ed4834]
+    amrex::BLBackTrace::print_backtrace_info(_IO_FILE*) at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Src/Base/AMReX_BLBackTrace.cpp:167
+
+ 1: ./main2d.gnu.OMP.ex(+0x10c561) [0x55fd38ed7561]
+    amrex::BLBackTrace::handler(int) at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Src/Base/AMReX_BLBackTrace.cpp:71
+
+ 2: /lib/x86_64-linux-gnu/libc.so.6(+0x3ef20) [0x7f5c7742af20]
+
+ 3: /usr/lib/x86_64-linux-gnu/libgfortran.so.4(+0x19850e) [0x7f5c7870250e]
+    ?? ??:0
+
+ 4: /usr/lib/x86_64-linux-gnu/libgfortran.so.4(+0x1a0124) [0x7f5c7870a124]
+    amrex::ParticleBufferMap::define(amrex::ParGDBBase const*) at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Src/Base/AMReX_Vector.H:33
+ (inlined by) amrex::ParticleBufferMap::define(amrex::ParGDBBase const*) at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Src/Particle/AMReX_ParticleBufferMap.cpp:86
+
+ 5: /usr/lib/x86_64-linux-gnu/libgfortran.so.4(+0x193825) [0x7f5c786fd825]
+    ?? ??:0
+
+ 6: /usr/lib/x86_64-linux-gnu/libgfortran.so.4(+0x1966f3) [0x7f5c787006f3]
+    ?? ??:0
+
+ 7: /usr/lib/x86_64-linux-gnu/libgfortran.so.4(_gfortran_st_write_done+0x9) [0x7f5c78700909]
+    ?? ??:0
+
+ 8: ./main2d.gnu.OMP.ex(+0x1a3d69) [0x55fd38f6ed69]
+    initdata at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/Prob.f90:114
+
+ 9: ./main2d.gnu.OMP.ex(+0x119b7) [0x55fd38ddc9b7]
+    AmrLevelAdv::initData() [clone ._omp_fn.0] at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Tutorials/Amr/Advection_AmrLevel/Source/AmrLevelAdv.cpp:186
+
+10: /usr/lib/x86_64-linux-gnu/libgomp.so.1(GOMP_parallel+0x3f) [0x7f5c77c21ebf]
+    ?? ??:0
+
+11: ./main2d.gnu.OMP.ex(+0x13c8b) [0x55fd38ddec8b]
+    AmrLevelAdv::initData() at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Tutorials/Amr/Advection_AmrLevel/Source/AmrLevelAdv.cpp:207
+
+12: ./main2d.gnu.OMP.ex(+0x16f687) [0x55fd38f3a687]
+    ?? ??:0
+
+13: ./main2d.gnu.OMP.ex(+0x174845) [0x55fd38f3f845]
+    amrex::Amr::init(double, double) at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Src/Amr/AMReX_Amr.cpp:1336
+ (inlined by) amrex::Amr::init(double, double) at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Src/Amr/AMReX_Amr.cpp:1209
+
+14: ./main2d.gnu.OMP.ex(+0xcf5c) [0x55fd38dd7f5c]
+    main at /local/data/public/azam378/ARMRex/amrex-master/Tutorials/Amr/Advection_AmrLevel/Exec/UniformVelocity/../../../../../Tutorials/Amr/Advection_AmrLevel/Source/main.cpp:52
+
+15: /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xe7) [0x7f5c7740db97]
+
+16: ./main2d.gnu.OMP.ex(+0x10caa) [0x55fd38ddbcaa]
+    ?? ??:0
+

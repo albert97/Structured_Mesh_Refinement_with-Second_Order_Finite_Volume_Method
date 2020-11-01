@@ -1,0 +1,8 @@
+f90EXE_sources += Global_varaibles_and_functions.f90
+f90EXE_sources += Display_function.f90
+f90EXE_sources += dt_function_$(DIM)d.f90
+f90EXE_sources += Adv_$(DIM)d.f90
+f90EXE_sources += slope_$(DIM)d.f90
+f90EXE_sources += compute_flux_$(DIM)d.f90
+f90EXE_sources += Max_Gradient.f90
+f90EXE_sources += Plot_File.f90

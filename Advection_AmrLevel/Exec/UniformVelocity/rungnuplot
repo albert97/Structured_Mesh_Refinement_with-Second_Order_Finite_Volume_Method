@@ -1,0 +1,5 @@
+#!/bin/bash
+
+gnuplot -e " set multipot layout 2; plot 'AMRex_densityprofile.dat' u 1:5 title 'Density' w linespoints lt 1; plot 'AMRex_densityprofilenomesh.dat' u 1:5 title 'Density' w linespoints lt 1 pause mouse keypress"
+
+

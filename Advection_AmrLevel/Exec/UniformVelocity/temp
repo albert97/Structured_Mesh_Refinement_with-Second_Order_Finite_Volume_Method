@@ -1,0 +1,2985 @@
+
+ 
+ !
+ !box one
+ !
+	if (lo(1) == (Ncell/4) .and. hi(1) == (Ncell/2-1) .and. lo(2)==(Ncell/2 ) .and. hi(2)==(3*Ncell/4) -1 ) then 
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+	
+		do k=lo(3),hi(3)
+			do j=lo(2),hi(2)
+
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2))
+					do i=hi(1), (hi(1) - tempLength), -1
+		  		        u = 0.0
+			         	v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+				    	phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v				
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+				
+			
+				end if
+	
+				temp =temp+1
+				DfC = dx(2)*temp
+		    
+			end do
+		end do 
+	!  !$omp end parallel do
+	
+	end if 
+
+ temp = 0
+ DfC = dx(2) * temp
+
+!
+!box two
+!
+
+
+
+
+
+
+
+	if (lo(1) == (Ncell/2) .and. hi(1) == ( 3 * Ncell/4 -1)  .and. lo(2)==(Ncell/2) .and. hi(2)==(3*Ncell/4) -1 ) then 
+	
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=lo(2),hi(2)
+	
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+					do i=lo(1),lo(1)+(tempLength)
+
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+			
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+
+			end do
+		end do 
+		
+	!  !$omp end parallel do
+	end if 
+
+
+
+  temp = 0
+  DfC = dx(2) * temp
+
+!
+!box three
+!
+	if (lo(1) == (Ncell/4) .and. hi(1) == (Ncell/2-1)  .and. lo(2)==(Ncell/4) .and. hi(2)==(Ncell/2) -1 ) then 
+	
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=hi(2), lo(2), -1
+
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2))
+					do i= hi(1), (hi(1)-tempLength), -1
+						print*, "I am in Box Three2"
+
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do	
+			
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+			end do
+		end do 
+	!  !$omp end parallel do
+	end if 
+
+
+  temp = 0
+  DfC = dx(2) * temp
+
+
+!
+!box four
+!
+if (lo(1) == (Ncell/2) .and. hi(1) == (3*Ncell/4-1)  .and. lo(2)==(Ncell/4) .and. hi(2)==(Ncell/2) -1 ) then 
+	
+	
+ ! !$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=hi(2), lo(2), -1
+			
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+					do i= lo(1), (lo(1)+tempLength)
+	
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+				
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+
+			end do
+		end do 
+	!  !$omp end parallel do
+	end if 
+
+
+  temp = 0
+  DfC = dx(2) * temp
+ 
+ 	do k=lo(3),hi(3)
+		do j= Ncell/2.0,hi(2)
+		
+			if(DfC <0.4d0) then
+		    
+			tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+				do i=Ncell/2, Ncell/2+(tempLength)
+				
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+     					phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+					do i=Ncell/2, Ncell/2 -(tempLength), -1
+						
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+     					phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+			
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+
+			end do
+		end do 
+ 
+ temp = 0
+ DfC = dx(2) * temp
+ 
+	do k=lo(3),hi(3)
+			do j= Ncell/2.0, lo(2), -1
+				
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+					do i = Ncell/2, Ncell/2+(tempLength)
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+					do i=Ncell/2, Ncell/2 -(tempLength), -1
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+     					phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+			
+				end if
+		    
+				temp =temp+1
+    			DfC = dx(2)*temp
+
+			end do
+	 	end do 
+ 
+    
+    if ( DIRPARAM == 0 ) then 
+
+    !--------------------- FLUX IN THE X DIR ---------------------------
+        !$omp parallel do private(i,j) collapse(2)	
+		do j = lo(2),hi(2)
+			do i = lo(1), hi(1) +1
+			    
+			    QLL = phi(i-2,j,1:nVarQ)
+				QL  = phi(i-1,j,1:nVarQ)
+			    QR  = phi(i,j,1:nVarQ)
+			    QRR = phi(i+1,j,1:nVarQ)		    
+			    	   
+			    
+			    if ( FluxType == 0 ) then 
+			    
+					call FORCE_FLUX( DIRPARAM, QL, QR, dx( 1 ), dt, &
+			                         NUM_FLUX ) 
+			    
+			    else if ( FluxType == 1 ) then 	
+			    
+					call HLLC_FLUX ( DIRPARAM, QL, QR, NUM_FLUX ) 
+					
+			    else if ( FluxType == 2 ) then
+			    
+					call MUSCL_TVD_FLUX ( DIRPARAM, QLL, QL, QR, QRR, &
+					                    & dt, dx( 1 ), NUM_FLUX ) 
+					                    		    
+			    end if		         
+				
+				flxx(i,j,1:nVarQ) = NUM_FLUX( : )
+				
+			end do
+			
+		end do
+	 !$omp end parallel do
+	else if ( DIRPARAM == 1 ) then 		
+	
+!	write(*,*)"Density",phi(:,:,1)
+!	write(*,*)"ph(32,0)",phi(32,0,  1)
+	!--------------------- FLUX IN THE Y DIR ---------------------------
+     !$omp parallel do private(i,j) collapse(2)
+		do j = lo(2),hi(2) +1
+		  
+			do i = lo(1), hi(1) 
+		
+		 
+		        QLL = phi(i,j-2,1:nVarQ)
+				QL  = phi(i,j-1,1:nVarQ)
+			    QR  = phi(i,j,1:nVarQ)
+			    QRR = phi(i,j+1,1:nVarQ)
+	!	    	 write(*,*)"QLL", QLL, "QL",QL ,"QR", QR, "QRR", QRR, i ,j
+		
+			    if ( FluxType == 0 ) then 
+			    
+					call FORCE_FLUX( DIRPARAM, QL, QR, dx( 2 ), dt, &
+			                         NUM_FLUX ) 
+			    
+			    else if ( FluxType == 1 ) then 	
+			    
+					call HLLC_FLUX ( DIRPARAM, QL, QR, NUM_FLUX )
+					
+				else if ( FluxType == 2 ) then
+			    
+					call MUSCL_TVD_FLUX ( DIRPARAM, QLL, QL, QR, QRR, &
+					                    & dt, dx( 2 ), NUM_FLUX )  
+			    
+			    end if	 			         
+				
+				flxy(i,j,1:nVarQ) = NUM_FLUX( : )
+						
+			end do
+		end do
+	 !$omp end parallel do
+	end if	
+	   
+
+  end subroutine compute_flux_2d
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !----------------------    FORCE FLUX    -----------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine FORCE_FLUX ( DIRPARAM, QL, QR, dxy, dt, FORCE_NF ) 
+  
+
+	use global_var_module
+	use auxiliary_module
+	
+	implicit none
+	
+	integer, intent( in ) :: DIRPARAM	
+	double precision, intent ( in ) :: QL( nVarQ ), QR( nVarQ ), dxy, dt	
+	double precision,intent (inout ) :: FORCE_NF ( nVarQ )  
+	
+	double precision :: LFFlux( nVarQ ), RIFlux( nVarQ ), FL( nVarQ ), &
+	                    FR( nVarQ ), QInter( nVarQ )   
+	
+	
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QL, FL) 
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QR, FR) 
+			    
+    LFFlux( : ) = 0.5d0*( FL( : ) + FR( : ) ) - dxy/dt* &
+		        & 0.5d0*( QR( : ) - QL( : ) ) 
+    QInter( : ) = 0.5d0*( QL( : ) + QR( : ) ) - dt/dxy* &
+		        & 0.5d0*( FR( : ) - FL( : ) )    
+		         
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QInter, RIFlux)  
+    
+    FORCE_NF = 0.5d0*( LFFlux( : ) + RIFlux( : ) )
+    	
+	
+  end subroutine FORCE_FLUX 
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !----------------------    HLLC FLUX    -----------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine HLLC_FLUX ( DIRPARAM, QL, QR, F_HLLC ) 
+  
+
+	use global_var_module
+	use auxiliary_module
+	
+	implicit none
+	
+	integer, intent( in ) :: DIRPARAM	
+	double precision, intent ( in ) :: QL( nVarQ ), QR( nVarQ )
+	double precision,intent (inout ) :: F_HLLC( nVarQ ) 
+	
+	double precision :: WL( nVarQ ), WR( nVarQ ), QLStar( nVarQ ), &
+	                    QRStar( nVarQ )
+	                    
+	double precision :: FL( nVarQ ), FR( nVarQ ), FLStar( nVarQ ), & 
+	                    FRStar( nVarQ ) 	
+	
+	double precision :: VNormL, VNormR, VTanL, VTanR 
+	
+	double precision :: cL, cR, cTilde, rhoTilde, PPVRS, PStar, & 
+	                    qqL, qqR, SL, SR, SStar, KL, KR 
+	                    
+	integer :: i 
+	                    
+	
+	! PRIMITIVE VARIABLES COMPUTATION 
+
+        
+    call C2P( (/1,1/),(/1,1/),QL, WL ) ;
+    call C2P( (/1,1/),(/1,1/),QR, WR ) ;
+    
+    
+    ! NORMAL & TANGENTIAL COMPONENTS
+    
+    
+    if ( DIRPARAM == 0 ) then
+    
+		VNormL = WL( 2 )  
+		VNormR = WR( 2 ) 
+		VTanL  = WL( 3 )
+		VTanR  = WR( 3 )    
+    
+    else 
+    
+		VNormL = WL( 3 )  
+		VNormR = WR( 3 ) 
+		VTanL  = WL( 2 )
+		VTanR  = WR( 2 )    
+    
+    end if 
+    
+    
+    ! SPEED ESTIMATES ( based on PVRS ) 
+   ! write(*,*)"( Gamma*WR( 4 )/WR( 1 ) ) ",( Gamma*WR( 4 )/WR( 1 ) ), "WR( 4 )",WR( 4 ), "WR( 1 )", WR( 1 )
+    cL = DSQRT( Gamma*WL( 4 )/WL( 1 ) ) 
+    cR = DSQRT( Gamma*WR( 4 )/WR( 1 ) ) 
+    
+    cTilde   = 0.5d0*( cL + cR )                           
+    rhoTilde = 0.5d0*( QL( 1 ) + QR( 1 ) ) 
+            
+    PPVRS = 0.5d0*( WL ( 4 ) + WR ( 4 ) ) - &
+          & 0.5d0*( VNormR - VNormL )*rhoTilde*cTilde 
+    
+    PStar = MAX( 0.0, PPVRS )
+    
+    if ( PStar .LE. WL( 4 ) ) then 
+    
+		qqL = 1 
+		
+	else 
+	
+		qqL =  DSQRT( 1 + ( Gamma + 1 )/( 2*Gamma )* &
+		    &  ( PStar/WL( 4 ) - 1 ) )    
+    
+    end if 
+    
+    if ( PStar .LE. WR( 4 ) ) then 
+    
+		qqR = 1 
+		
+	else 
+	
+		qqR =  DSQRT( 1 + ( Gamma + 1 )/( 2*Gamma )* &
+		    &  ( PStar/WR( 4 ) - 1 ) )    
+    
+    end if 
+    
+    SL = VNormL - cL*qqL
+    SR = VNormR + cR*qqR    
+              
+
+    ! STAR STATES 
+    
+    
+    SStar = ( WR( 4 ) - WL( 4 ) + QL( 1 )*VNormL*( SL - VNormL ) - &
+          &   QR( 1 )*VNormR*( SR - VNormR ) )/( WL( 1 )*( SL - &
+          &   VNormL ) - WR( 1 )*( SR - VNormR ) ) 
+              
+    
+    KL = WL( 1 )*( SL - VNormL )/( SL - SStar ) 
+    KR = WR( 1 )*( SR - VNormR )/( SR - SStar )     
+    
+    QLStar ( 1 ) = KL ;
+    QLStar ( 4 ) = KL*( QL( 4 )/QL( 1 ) + ( SStar - VNormL )*(  &
+                 & SStar + WL( 4 )/( QL( 1 )*( SL - VNormL ) ) ) )     
+    
+    QRStar ( 1 ) = KR ;
+    QRStar ( 4 ) = KR*( QR( 4 )/QR( 1 ) + ( SStar - VNormR )*(  &
+                 & SStar + WR( 4 )/( QR( 1 )*( SR - VNormR ) ) ) ) 
+                 
+    if ( DIRPARAM == 0 ) then 
+    
+		QLStar( 2 ) = KL*SStar 
+		QRStar( 2 ) = KR*SStar		
+		QLStar( 3 ) = KL*VTanL
+		QRStar( 3 ) = KR*VTanR		
+    
+    else 
+    
+		QLStar( 2 ) = KL*VTanL
+		QRStar( 2 ) = KR*VTanR	
+		QLStar( 3 ) = KL*SStar 
+		QRStar( 3 ) = KR*SStar 
+    
+    end if 
+    
+    
+    ! HLLC FLUX 
+    
+    
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QL, FL)  
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QR, FR)  
+    
+    do i = 1, nVarQ
+    
+		FLStar( i ) = FL( i ) + SL*( QLStar( i ) - QL( i ) ) 	
+		FRStar( i ) = FR( i ) + SR*( QRStar( i ) - QR( i ) ) 		
+		    
+    end do 
+    
+    
+    if ( SL .GE. 0.d0 ) then 
+    
+		F_HLLC( : ) = FL( : ) 
+    
+    end if 
+    
+    if ( SL .LT. 0.d0 .AND. SStar .GE. 0.d0   ) then 
+    
+		F_HLLC( : ) = FLStar( : ) 
+    
+    end if 
+    
+    if ( SStar .LT. 0.d0 .AND. SR .GE. 0.d0   ) then 
+    
+		F_HLLC( : ) = FRStar( : ) 
+    
+    end if 
+    
+    if ( SR .LT. 0.d0 ) then 
+    
+		F_HLLC( : ) = FR( : ) 
+    
+    end if 	
+    	
+	
+  end subroutine HLLC_FLUX
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !----------------------   MUSCL_TVD FLUX    --------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine MUSCL_TVD_FLUX( DIRPARAM,QLL,QL,QR,QRR,dt,dxy,F_MUSCL ) 
+  
+
+	use global_var_module
+	use auxiliary_module
+	
+	implicit none
+	
+	integer, intent( in ) :: DIRPARAM
+	double precision, intent ( in ) :: dt, dxy 
+	double precision, intent ( in ) :: QLL( nVarQ ), QL( nVarQ ), &
+	                                   QR( nVarQ ), QRR( nVarQ )
+	double precision,intent ( inout ) :: F_MUSCL( nVarQ ) 
+	
+	double precision :: QExLL( nVarQ ), QExLR( nVarQ ), &
+	                    QExRL( nVarQ ), QExRR( nVarQ ), &
+	                    QEvL( nVarQ ), QEvR( nVarQ ) 
+	                    
+	double precision :: FLL( nVarQ ), FLR( nVarQ ), FRL( nVarQ ), & 
+	                    FRR( nVarQ )
+	             
+	
+	!write(*,*)"QLL", QLL, "QL",QL ,"QR", QR, "QRR", QRR
+	       
+	call DATA_RECONSTRUCTION( QLL, QL, QR, 0, QExLL )
+	call DATA_RECONSTRUCTION( QLL, QL, QR, 1, QExLR )  	
+	call DATA_RECONSTRUCTION( QL, QR, QRR, 0, QExRL )
+	call DATA_RECONSTRUCTION( QL, QR, QRR, 1, QExRR )
+	
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExLL, FLL)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExLR, FLR)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExRL, FRL)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExRR, FRR)    
+		
+	QEvL( : ) = QExLR( : ) + 0.5d0*dt/dxy*( FLL( : ) - FLR( : ) ) 
+	QEvR( : ) = QExRL( : ) + 0.5d0*dt/dxy*( FRL( : ) - FRR( : ) ) 
+	! write(*,*)"QExLR", QExLR,"QExRL", QExRL, "FLL", FLL, "FLR", FLR, "FRL",FRL,"FRR", FRR
+	call HLLC_FLUX( DIRPARAM, QEvL, QEvR, F_MUSCL ) 
+	    	
+	
+  end subroutine MUSCL_TVD_FLUX
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !--------------------   DATA RECONSTRUCTION   ------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine DATA_RECONSTRUCTION( QL, QC, QR, SIDEPARAM, QRECON ) 
+  
+	use global_var_module
+  
+	implicit none
+	
+	integer, intent ( in ) :: SIDEPARAM
+	double precision, intent ( in ) :: QL( nVarQ ), QC( nVarQ ), &
+	                                   QR( nVarQ )  
+	double precision,intent ( inout ) :: QRECON( nVarQ )
+	
+	double precision :: DeltaLim( nVarQ ), PSI( nVarQ )  
+	double precision :: Delta, DeltaCL, DeltaRC, Omega 
+	integer :: i 
+	
+	Omega = 0.d0 
+	
+	call SLOPE_LIMITER( QL, QC, QR, PSI )  
+	
+	do i = 1, nVarQ
+	
+		DeltaCL = QC( i ) - QL( i ) 
+		DeltaRC = QR( i ) - QC( i ) 		
+		Delta = 0.5d0*( 1.d0 + Omega )*DeltaCL + &
+		      & 0.5d0*( 1.d0 - Omega )*DeltaRC 			
+		DeltaLim( i ) = PSI( i )*Delta 
+	
+	end do 
+	
+	if ( SIDEPARAM == 0 ) then 
+	
+		QRECON( : ) = QC( : ) - 0.5d0*DeltaLim( : ) 	
+	
+	else 
+	
+		QRECON( : ) = QC( : ) + 0.5d0*DeltaLim( : ) 	
+	
+	end if
+  
+    
+  end subroutine DATA_RECONSTRUCTION
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !----------------------   SLOPE LIMITER   ----------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine SLOPE_LIMITER( QL, QC, QR, PSI ) 
+  
+	use global_var_module
+  
+	implicit none
+	
+	double precision, intent ( in ) :: QL( nVarQ ), QC( nVarQ ), &
+	                                   QR( nVarQ )  
+	double precision,intent ( inout ) :: PSI( nVarQ )
+	
+	double precision :: BetaCR, Omega, DqCL, DqRC, TOL
+	double precision :: r( nVarQ ), csiR( nVarQ )   
+	integer :: MYLIMITER, i 
+	
+	MYLIMITER = 1  ! ( 1 == SUPERBEE, 2 == VANLEER, 3 == MINMOD )  
+	
+	Omega = 0.d0  
+	BetaCR = 1.d0 
+	
+	TOL = 1E-10 
+		
+	do i = 1, nVarQ
+	
+		DqCL = QC( i ) - QL( i ) 
+		DqRC = QR( i ) - QC( i ) 
+		
+		if ( ABS( DqRC ) .LT. TOL ) then 
+			
+			DqRC = TOL 
+			
+			if ( ABS( DqCL ) .LT. TOL ) then 
+				
+				r( i ) = 1.d0 
+				
+			else 
+				
+				r( i ) = DqCL/DqRC 
+				
+				if ( r( i ) .NE. r( i ) .OR. r( i ) .GE. HUGE(TOL) ) then 
+			
+			       r ( i ) = 0.d0 ;
+			
+				end if  
+				
+			end if 
+			
+		else
+			
+			r( i ) = DqCL/DqRC 			
+			
+		end if 		
+							
+		csiR( i ) = 2.d0*BetaCR/( 1.d0 - Omega + &
+		          & ( 1.d0 + Omega )*r( i ) )  
+	
+	end do 
+	
+	
+	do i = 1, nVarQ
+	
+		if ( MYLIMITER == 1 ) then  ! SUPERBEE 
+		
+			if ( r( i ) .LT. 0.d0 ) then 
+					
+				PSI( i ) = 0.d0 
+					
+			end if 
+				
+			if ( r( i ) .GE. 0.d0 .AND. r( i ) .LT. 0.5d0 ) then 
+					
+				PSI( i ) = 2.d0*r( i )
+					
+			end if 
+				
+			if ( r( i ) .GE. 0.5d0 .AND. r( i ) .LT. 1.d0 ) then 
+					
+				PSI( i ) = 1.d0 
+					
+			end if
+				
+			if ( r( i ) .GE. 1.d0 ) then 
+					
+				PSI( i ) = MIN( 2.d0, MIN( r( i ), csiR( i ) ) )
+					
+			end if
+		
+		
+		elseif ( MYLIMITER == 2 ) then  ! VANLEER 
+		
+			if ( r( i ) .LE. 0.d0 ) then 
+					
+				PSI( i ) = 0.d0 			
+					
+			else
+					
+				PSI( i ) = MIN( 2.d0*r( i )/( 1 + r( i ) ), csiR( i ) ) 
+					
+			end if			
+		
+		
+		elseif ( MYLIMITER == 3 ) then  ! MINMOD
+		
+			if ( r( i ) .LE. 1.d0 ) then
+					
+				PSI( i ) = MAX( 0.d0, r( i ) ) 			
+					
+			else
+					
+				PSI( i ) = MIN( 1.d0, csiR( i ) )
+					
+			end if
+					
+		
+		end if	
+	
+	end do 
+	     
+    
+  end subroutine SLOPE_LIMITER
+  
+module compute_flux_module
+
+  implicit none
+
+  private :: FORCE_FLUX, HLLC_FLUX, MUSCL_TVD_FLUX, &
+             DATA_RECONSTRUCTION, SLOPE_LIMITER
+
+  public :: compute_flux_2d
+
+contains
+
+  subroutine compute_flux_2d(DIRPARAM, lo, hi, dt, dx, &
+                             phi,ph_lo,ph_hi, &
+                             flxx, fx_lo, fx_hi, &
+                             flxy, fy_lo, fy_hi)
+
+    use global_var_module
+    
+	implicit none
+    
+    integer, intent(in) :: lo(2), hi(2)
+    integer, intent(in) :: ph_lo(2), ph_hi(2)
+    integer, intent(in) :: fx_lo(2), fx_hi(2)
+    integer, intent(in) :: fy_lo(2), fy_hi(2)
+    
+    integer, intent(in) :: DIRPARAM	
+    
+    double precision, intent(in) :: dt, dx(2)
+    double precision, intent(in) :: phi (ph_lo(1):ph_hi(1), &
+                                         ph_lo(2):ph_hi(2),nVar)    
+
+    double precision, intent(out) :: flxx(fx_lo(1):fx_hi(1), &
+                                          fx_lo(2):fx_hi(2),nVar)
+    double precision, intent(out) :: flxy(fy_lo(1):fy_hi(1), &
+                                          fy_lo(2):fy_hi(2),nVar)
+    
+    double precision :: QL( nVarQ ), QR( nVarQ ), QLL( nVarQ ), &
+                        QRR( nVarQ ), NUM_FLUX( nVarQ )      
+    integer :: i, j
+    
+    integer :: FluxType = 2 
+    
+    
+    flxx(:,:,:) = 0.d0 
+    flxy(:,:,:)= 0.d0 
+    
+
+    
+    if ( DIRPARAM == 0 ) then 
+
+    !--------------------- FLUX IN THE X DIR ---------------------------
+        !$omp parallel do private(i,j) collapse(2)	
+		do j = lo(2),hi(2)
+			do i = lo(1), hi(1) +1
+			    
+			    QLL = phi(i-2,j,1:nVarQ)
+				QL  = phi(i-1,j,1:nVarQ)
+			    QR  = phi(i,j,1:nVarQ)
+			    QRR = phi(i+1,j,1:nVarQ)		    
+			    	   
+			    
+			    if ( FluxType == 0 ) then 
+			    
+					call FORCE_FLUX( DIRPARAM, QL, QR, dx( 1 ), dt, &
+			                         NUM_FLUX ) 
+			    
+			    else if ( FluxType == 1 ) then 	
+			    
+					call HLLC_FLUX ( DIRPARAM, QL, QR, NUM_FLUX ) 
+					
+			    else if ( FluxType == 2 ) then
+			    
+					call MUSCL_TVD_FLUX ( DIRPARAM, QLL, QL, QR, QRR, &
+					                    & dt, dx( 1 ), NUM_FLUX ) 
+					                    		    
+			    end if		         
+				
+				flxx(i,j,1:nVarQ) = NUM_FLUX( : )
+				
+			end do
+			
+		end do
+	 !$omp end parallel do
+	else if ( DIRPARAM == 1 ) then 		
+	
+!	write(*,*)"Density",phi(:,:,1)
+!	write(*,*)"ph(32,0)",phi(32,0,  1)
+	!--------------------- FLUX IN THE Y DIR ---------------------------
+     !$omp parallel do private(i,j) collapse(2)
+		do j = lo(2),hi(2) +1
+		  
+			do i = lo(1), hi(1) 
+		
+		 
+		        QLL = phi(i,j-2,1:nVarQ)
+				QL  = phi(i,j-1,1:nVarQ)
+			    QR  = phi(i,j,1:nVarQ)
+			    QRR = phi(i,j+1,1:nVarQ)
+	!	    	 write(*,*)"QLL", QLL, "QL",QL ,"QR", QR, "QRR", QRR, i ,j
+		
+			    if ( FluxType == 0 ) then 
+			    
+					call FORCE_FLUX( DIRPARAM, QL, QR, dx( 2 ), dt, &
+			                         NUM_FLUX ) 
+			    
+			    else if ( FluxType == 1 ) then 	
+			    
+					call HLLC_FLUX ( DIRPARAM, QL, QR, NUM_FLUX )
+					
+				else if ( FluxType == 2 ) then
+			    
+					call MUSCL_TVD_FLUX ( DIRPARAM, QLL, QL, QR, QRR, &
+					                    & dt, dx( 2 ), NUM_FLUX )  
+			    
+			    end if	 			         
+				
+				flxy(i,j,1:nVarQ) = NUM_FLUX( : )
+						
+			end do
+		end do
+	 !$omp end parallel do
+	end if	
+	   
+
+  end subroutine compute_flux_2d
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !----------------------    FORCE FLUX    -----------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine FORCE_FLUX ( DIRPARAM, QL, QR, dxy, dt, FORCE_NF ) 
+  
+
+	use global_var_module
+	use auxiliary_module
+	
+	implicit none
+	
+	integer, intent( in ) :: DIRPARAM	
+	double precision, intent ( in ) :: QL( nVarQ ), QR( nVarQ ), dxy, dt	
+	double precision,intent (inout ) :: FORCE_NF ( nVarQ )  
+	
+	double precision :: LFFlux( nVarQ ), RIFlux( nVarQ ), FL( nVarQ ), &
+	                    FR( nVarQ ), QInter( nVarQ )   
+	
+	
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QL, FL) 
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QR, FR) 
+			    
+    LFFlux( : ) = 0.5d0*( FL( : ) + FR( : ) ) - dxy/dt* &
+		        & 0.5d0*( QR( : ) - QL( : ) ) 
+    QInter( : ) = 0.5d0*( QL( : ) + QR( : ) ) - dt/dxy* &
+		        & 0.5d0*( FR( : ) - FL( : ) )    
+		         
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QInter, RIFlux)  
+    
+    FORCE_NF = 0.5d0*( LFFlux( : ) + RIFlux( : ) )
+    	
+	
+  end subroutine FORCE_FLUX 
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !----------------------    HLLC FLUX    -----------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine HLLC_FLUX ( DIRPARAM, QL, QR, F_HLLC ) 
+  
+
+	use global_var_module
+	use auxiliary_module
+	
+	implicit none
+	
+	integer, intent( in ) :: DIRPARAM	
+	double precision, intent ( in ) :: QL( nVarQ ), QR( nVarQ )
+	double precision,intent (inout ) :: F_HLLC( nVarQ ) 
+	
+	double precision :: WL( nVarQ ), WR( nVarQ ), QLStar( nVarQ ), &
+	                    QRStar( nVarQ )
+	                    
+	double precision :: FL( nVarQ ), FR( nVarQ ), FLStar( nVarQ ), & 
+	                    FRStar( nVarQ ) 	
+	
+	double precision :: VNormL, VNormR, VTanL, VTanR 
+	
+	double precision :: cL, cR, cTilde, rhoTilde, PPVRS, PStar, & 
+	                    qqL, qqR, SL, SR, SStar, KL, KR 
+	                    
+	integer :: i 
+	                    
+	
+	! PRIMITIVE VARIABLES COMPUTATION 
+
+        
+    call C2P( (/1,1/),(/1,1/),QL, WL ) ;
+    call C2P( (/1,1/),(/1,1/),QR, WR ) ;
+    
+    
+    ! NORMAL & TANGENTIAL COMPONENTS
+    
+    
+    if ( DIRPARAM == 0 ) then
+    
+		VNormL = WL( 2 )  
+		VNormR = WR( 2 ) 
+		VTanL  = WL( 3 )
+		VTanR  = WR( 3 )    
+    
+    else 
+    
+		VNormL = WL( 3 )  
+		VNormR = WR( 3 ) 
+		VTanL  = WL( 2 )
+		VTanR  = WR( 2 )    
+    
+    end if 
+    
+    
+    ! SPEED ESTIMATES ( based on PVRS ) 
+   ! write(*,*)"( Gamma*WR( 4 )/WR( 1 ) ) ",( Gamma*WR( 4 )/WR( 1 ) ), "WR( 4 )",WR( 4 ), "WR( 1 )", WR( 1 )
+    cL = DSQRT( Gamma*WL( 4 )/WL( 1 ) ) 
+    cR = DSQRT( Gamma*WR( 4 )/WR( 1 ) ) 
+    
+    cTilde   = 0.5d0*( cL + cR )                           
+    rhoTilde = 0.5d0*( QL( 1 ) + QR( 1 ) ) 
+            
+    PPVRS = 0.5d0*( WL ( 4 ) + WR ( 4 ) ) - &
+          & 0.5d0*( VNormR - VNormL )*rhoTilde*cTilde 
+    
+    PStar = MAX( 0.0, PPVRS )
+    
+    if ( PStar .LE. WL( 4 ) ) then 
+    
+		qqL = 1 
+		
+	else 
+	
+		qqL =  DSQRT( 1 + ( Gamma + 1 )/( 2*Gamma )* &
+		    &  ( PStar/WL( 4 ) - 1 ) )    
+    
+    end if 
+    
+    if ( PStar .LE. WR( 4 ) ) then 
+    
+		qqR = 1 
+		
+	else 
+	
+		qqR =  DSQRT( 1 + ( Gamma + 1 )/( 2*Gamma )* &
+		    &  ( PStar/WR( 4 ) - 1 ) )    
+    
+    end if 
+    
+    SL = VNormL - cL*qqL
+    SR = VNormR + cR*qqR    
+              
+
+    ! STAR STATES 
+    
+    
+    SStar = ( WR( 4 ) - WL( 4 ) + QL( 1 )*VNormL*( SL - VNormL ) - &
+          &   QR( 1 )*VNormR*( SR - VNormR ) )/( WL( 1 )*( SL - &
+          &   VNormL ) - WR( 1 )*( SR - VNormR ) ) 
+              
+    
+    KL = WL( 1 )*( SL - VNormL )/( SL - SStar ) 
+    KR = WR( 1 )*( SR - VNormR )/( SR - SStar )     
+    
+    QLStar ( 1 ) = KL ;
+    QLStar ( 4 ) = KL*( QL( 4 )/QL( 1 ) + ( SStar - VNormL )*(  &
+                 & SStar + WL( 4 )/( QL( 1 )*( SL - VNormL ) ) ) )     
+    
+    QRStar ( 1 ) = KR ;
+    QRStar ( 4 ) = KR*( QR( 4 )/QR( 1 ) + ( SStar - VNormR )*(  &
+                 & SStar + WR( 4 )/( QR( 1 )*( SR - VNormR ) ) ) ) 
+                 
+    if ( DIRPARAM == 0 ) then 
+    
+		QLStar( 2 ) = KL*SStar 
+		QRStar( 2 ) = KR*SStar		
+		QLStar( 3 ) = KL*VTanL
+		QRStar( 3 ) = KR*VTanR		
+    
+    else 
+    
+		QLStar( 2 ) = KL*VTanL
+		QRStar( 2 ) = KR*VTanR	
+		QLStar( 3 ) = KL*SStar 
+		QRStar( 3 ) = KR*SStar 
+    
+    end if 
+    
+    
+    ! HLLC FLUX 
+    
+    
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QL, FL)  
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QR, FR)  
+    
+    do i = 1, nVarQ
+    
+		FLStar( i ) = FL( i ) + SL*( QLStar( i ) - QL( i ) ) 	
+		FRStar( i ) = FR( i ) + SR*( QRStar( i ) - QR( i ) ) 		
+		    
+    end do 
+    
+    
+    if ( SL .GE. 0.d0 ) then 
+    
+		F_HLLC( : ) = FL( : ) 
+    
+    end if 
+    
+    if ( SL .LT. 0.d0 .AND. SStar .GE. 0.d0   ) then 
+    
+		F_HLLC( : ) = FLStar( : ) 
+    
+    end if 
+    
+    if ( SStar .LT. 0.d0 .AND. SR .GE. 0.d0   ) then 
+    
+		F_HLLC( : ) = FRStar( : ) 
+    
+    end if 
+    
+    if ( SR .LT. 0.d0 ) then 
+    
+		F_HLLC( : ) = FR( : ) 
+    
+    end if 	
+    	
+	
+  end subroutine HLLC_FLUX
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !----------------------   MUSCL_TVD FLUX    --------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine MUSCL_TVD_FLUX( DIRPARAM,QLL,QL,QR,QRR,dt,dxy,F_MUSCL ) 
+  
+
+	use global_var_module
+	use auxiliary_module
+	
+	implicit none
+	
+	integer, intent( in ) :: DIRPARAM
+	double precision, intent ( in ) :: dt, dxy 
+	double precision, intent ( in ) :: QLL( nVarQ ), QL( nVarQ ), &
+	                                   QR( nVarQ ), QRR( nVarQ )
+	double precision,intent ( inout ) :: F_MUSCL( nVarQ ) 
+	
+	double precision :: QExLL( nVarQ ), QExLR( nVarQ ), &
+	                    QExRL( nVarQ ), QExRR( nVarQ ), &
+	                    QEvL( nVarQ ), QEvR( nVarQ ) 
+	                    
+	double precision :: FLL( nVarQ ), FLR( nVarQ ), FRL( nVarQ ), & 
+	                    FRR( nVarQ )
+	             
+	
+	!write(*,*)"QLL", QLL, "QL",QL ,"QR", QR, "QRR", QRR
+	       
+	call DATA_RECONSTRUCTION( QLL, QL, QR, 0, QExLL )
+	call DATA_RECONSTRUCTION( QLL, QL, QR, 1, QExLR )  	
+	call DATA_RECONSTRUCTION( QL, QR, QRR, 0, QExRL )
+	call DATA_RECONSTRUCTION( QL, QR, QRR, 1, QExRR )
+	
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExLL, FLL)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExLR, FLR)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExRL, FRL)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExRR, FRR)    
+		
+	QEvL( : ) = QExLR( : ) + 0.5d0*dt/dxy*( FLL( : ) - FLR( : ) ) 
+	QEvR( : ) = QExRL( : ) + 0.5d0*dt/dxy*( FRL( : ) - FRR( : ) ) 
+	! write(*,*)"QExLR", QExLR,"QExRL", QExRL, "FLL", FLL, "FLR", FLR, "FRL",FRL,"FRR", FRR
+	call HLLC_FLUX( DIRPARAM, QEvL, QEvR, F_MUSCL ) 
+	    	
+	
+  end subroutine MUSCL_TVD_FLUX
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !--------------------   DATA RECONSTRUCTION   ------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine DATA_RECONSTRUCTION( QL, QC, QR, SIDEPARAM, QRECON ) 
+  
+	use global_var_module
+  
+	implicit none
+	
+	integer, intent ( in ) :: SIDEPARAM
+	double precision, intent ( in ) :: QL( nVarQ ), QC( nVarQ ), &
+	                                   QR( nVarQ )  
+	double precision,intent ( inout ) :: QRECON( nVarQ )
+	
+	double precision :: DeltaLim( nVarQ ), PSI( nVarQ )  
+	double precision :: Delta, DeltaCL, DeltaRC, Omega 
+	integer :: i 
+	
+	Omega = 0.d0 
+	
+	call SLOPE_LIMITER( QL, QC, QR, PSI )  
+	
+	do i = 1, nVarQ
+	
+		DeltaCL = QC( i ) - QL( i ) 
+		DeltaRC = QR( i ) - QC( i ) 		
+		Delta = 0.5d0*( 1.d0 + Omega )*DeltaCL + &
+		      & 0.5d0*( 1.d0 - Omega )*DeltaRC 			
+		DeltaLim( i ) = PSI( i )*Delta 
+	
+	end do 
+	
+	if ( SIDEPARAM == 0 ) then 
+	
+		QRECON( : ) = QC( : ) - 0.5d0*DeltaLim( : ) 	
+	
+	else 
+	
+		QRECON( : ) = QC( : ) + 0.5d0*DeltaLim( : ) 	
+	
+	end if
+  
+    
+  end subroutine DATA_RECONSTRUCTION
+  
+  
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  !----------------------   SLOPE LIMITER   ----------------------------
+  
+  !---------------------------------------------------------------------
+  !---------------------------------------------------------------------
+  
+  
+  
+  subroutine SLOPE_LIMITER( QL, QC, QR, PSI ) 
+  
+	use global_var_module
+  
+	implicit none
+	
+	double precision, intent ( in ) :: QL( nVarQ ), QC( nVarQ ), &
+	                                   QR( nVarQ )  
+	double precision,intent ( inout ) :: PSI( nVarQ )
+	
+	double precision :: BetaCR, Omega, DqCL, DqRC, TOL
+	double precision :: r( nVarQ ), csiR( nVarQ )   
+	integer :: MYLIMITER, i 
+	
+	MYLIMITER = 1  ! ( 1 == SUPERBEE, 2 == VANLEER, 3 == MINMOD )  
+	
+	Omega = 0.d0  
+	BetaCR = 1.d0 
+	
+	TOL = 1E-10 
+		
+	do i = 1, nVarQ
+	
+		DqCL = QC( i ) - QL( i ) 
+		DqRC = QR( i ) - QC( i ) 
+		
+		if ( ABS( DqRC ) .LT. TOL ) then 
+			
+			DqRC = TOL 
+			
+			if ( ABS( DqCL ) .LT. TOL ) then 
+				
+				r( i ) = 1.d0 
+				
+			else 
+				
+				r( i ) = DqCL/DqRC 
+				
+				if ( r( i ) .NE. r( i ) .OR. r( i ) .GE. HUGE(TOL) ) then 
+			
+			       r ( i ) = 0.d0 ;
+			
+				end if  
+				
+			end if 
+			
+		else
+			
+			r( i ) = DqCL/DqRC 			
+			
+		end if 		
+							
+		csiR( i ) = 2.d0*BetaCR/( 1.d0 - Omega + &
+		          & ( 1.d0 + Omega )*r( i ) )  
+	
+	end do 
+	
+	
+	do i = 1, nVarQ
+	
+		if ( MYLIMITER == 1 ) then  ! SUPERBEE 
+		
+			if ( r( i ) .LT. 0.d0 ) then 
+					
+				PSI( i ) = 0.d0 
+					
+			end if 
+				
+			if ( r( i ) .GE. 0.d0 .AND. r( i ) .LT. 0.5d0 ) then 
+					
+				PSI( i ) = 2.d0*r( i )
+					
+			end if 
+				
+			if ( r( i ) .GE. 0.5d0 .AND. r( i ) .LT. 1.d0 ) then 
+					
+				PSI( i ) = 1.d0 
+					
+			end if
+				
+			if ( r( i ) .GE. 1.d0 ) then 
+					
+				PSI( i ) = MIN( 2.d0, MIN( r( i ), csiR( i ) ) )
+					
+			end if
+		
+		
+		elseif ( MYLIMITER == 2 ) then  ! VANLEER 
+		
+			if ( r( i ) .LE. 0.d0 ) then 
+					
+				PSI( i ) = 0.d0 			
+					
+			else
+					
+				PSI( i ) = MIN( 2.d0*r( i )/( 1 + r( i ) ), csiR( i ) ) 
+					
+			end if			
+		
+		
+		elseif ( MYLIMITER == 3 ) then  ! MINMOD
+		
+			if ( r( i ) .LE. 1.d0 ) then
+					
+				PSI( i ) = MAX( 0.d0, r( i ) ) 			
+					
+			else
+					
+				PSI( i ) = MIN( 1.d0, csiR( i ) )
+					
+			end if
+					
+		
+		end if	
+	
+	end do 
+	     
+    
+  end subroutine SLOPE_LIMITER
+  
+  
+  
+
+end module compute_flux_module
+
+
+
+
+
+
+!-------------------  Initalised outer Domain  ---------------------!  
+!	 do k=lo(3),hi(3)
+!		do j=lo(2),hi(2)
+	
+!			do i=lo(1),hi(1)
+!				u = 0.0
+!				v = 0.0
+!				rho = 0.125
+!				p = 0.1
+!				phi(i,j,k, 1) = rho
+!		    	phi(i,j,k, 2) = rho * u
+!				phi(i,j,k, 3) = rho * v
+!				phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+!			    phi(i,j,k, 5) = u
+!				phi(i,j,k, 6) = v
+!				phi(i,j,k, 7) = p
+!				phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+				
+!			end do
+!		end do
+!	end do
+
+ ! tempangle =  j * (1.0d0/64.0d0)/ tan(0.6108652382)   !
+!	if( x .lt. (0.5d0 - (tempangle)))then
+				!			u = 0.0
+				!			v = 0.0
+				!			rho = 1.0
+				!			p = 1000
+				!			phi(i,j,k, 1) = rho
+				!			phi(i,j,k, 2) = rho * u
+				!			phi(i,j,k, 3) = rho * v
+				!			phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+				!			phi(i,j,k, 5) = u
+				!			phi(i,j,k, 6) = v
+				!			phi(i,j,k, 7) = p
+				!			phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+				!			
+				!		else
+				!			u = 0.0
+				!			v = 0.0
+				!			rho = 1.0
+				!			p= 0.01
+				!			phi(i,j,k, 1) = rho
+				!			phi(i,j,k, 2) = rho * u
+				!			phi(i,j,k, 3) = rho * v
+				!			phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+				!			phi(i,j,k, 5) = u
+				!			phi(i,j,k, 6) = v
+				!			phi(i,j,k, 7) = p
+				!			phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+				!		end 
+				
+				
+				
+				
+				
+				
+!------------------- Initialise Inner Domain  ---------------------!
+
+
+ !temp = 0
+ !DfC = dx(2) * temp
+ 
+ !
+ !box one
+ !
+
+!if (lo(1) == (Ncell/4) .and. hi(1) == (Ncell/2-1) .and. lo(2)==(Ncell/2 ) .and. hi(2)==(3*Ncell/4) -1 ) then 
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+	!print*, "I am here in Box 1"
+!
+!-------------------  Initalised outer Domain  ---------------------!  
+
+	!  !$omp end parallel do
+	
+	end if 
+
+ temp = 0
+ DfC = dx(2) * temp
+
+!
+!box two
+!
+
+if (lo(1) == (Ncell/2) .and. hi(1) == ( 3 * Ncell/4 -1)  .and. lo(2)==(Ncell/2) .and. hi(2)==(3*Ncell/4) -1 ) then 
+	
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=lo(2),hi(2)
+!	print*, "I am here in Box 2"
+	
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+					do i=lo(1),lo(1)+(tempLength)
+!print*, "I am here in Box 2"
+	
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+			
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+
+			end do
+		end do 
+		
+!	  !$omp end parallel do
+	end if 
+
+
+
+  temp = 0
+  DfC = dx(2) * temp
+
+!
+!box three
+!
+
+
+if (lo(1) == (Ncell/4) .and. hi(1) == (Ncell/2-1)  .and. lo(2)==(Ncell/4) .and. hi(2)==(Ncell/2) -1 ) then 
+	
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=hi(2), lo(2), -1
+!print*, "I am here in Box 3"
+	
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2))
+					do i= hi(1), (hi(1)-tempLength), -1
+	!					print*, "I am in Box Three2"
+
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do	
+			
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+			end do
+		end do 
+	  !$omp end parallel do
+	end if 
+
+
+  temp = 0
+  DfC = dx(2) * temp
+
+
+!
+!box four
+!
+if (lo(1) == (Ncell/2) .and. hi(1) == (3*Ncell/4-1)  .and. lo(2)==(Ncell/4) .and. hi(2)==(Ncell/2) -1 ) then 
+	
+	
+ ! !$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=hi(2), lo(2), -1
+!			print*, "I am here in Box 4"
+	
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+					do i= lo(1), (lo(1)+tempLength)
+!	print*, "I am here in Box 4"
+	
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+
+				end if
+	    
+			temp =temp+1
+			DfC = dx(2)*temp
+		end do
+	end do 
+	!  !$omp end parallel do
+end if 
+
+
+
+
+
+				
+!				end if
+		    
+!				temp =temp+1
+!				DfC = dx(2)*temp  tempangle =  j * (1.0d0/64.0d0)/ tan(0.6108652382)   !
+!	if( x .lt. (0.5d0 - (tempangle)))then
+!							u = 0.0
+!							v = 0.0
+!							rho = 1.0
+!							p = 1000
+!							phi(i,j,k, 1) = rho
+!							phi(i,j,k, 2) = rho * u
+!							phi(i,j,k, 3) = rho * v
+!							phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+!							phi(i,j,k, 5) = u
+!							phi(i,j,k, 6) = v
+!							phi(i,j,k, 7) = p
+!							phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+							
+!						else
+!							u = 0.0
+!							v = 0.0
+!							rho = 1.0
+!							p= 0.01
+!							phi(i,j,k, 1) = rho
+!							phi(i,j,k, 2) = rho * u
+!							phi(i,j,k, 3) = rho * v
+!							phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+!							phi(i,j,k, 5) = u
+!							phi(i,j,k, 6) = v
+!							phi(i,j,k, 7) = p
+!							phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+!						end 
+
+!			end do
+!		end do 
+!	  !$omp end parallel do
+!	end if 
+
+
+ 
+ 
+!write(*,*)"ph(32,0)",phi(32,0, :, 1)
+!	  tempangle =  j * (1.0d0/64.0d0)/ tan(0.6108652382)   !
+!	if( x .lt. (0.5d0 - (tempangle)))then
+				!			u = 0.0
+				!			v = 0.0
+				!			rho = 1.0
+				!			p = 1000
+				!			phi(i,j,k, 1) = rho
+				!			phi(i,j,k, 2) = rho * u
+				!			phi(i,j,k, 3) = rho * v
+				!			phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+				!			phi(i,j,k, 5) = u
+				!			phi(i,j,k, 6) = v
+				!			phi(i,j,k, 7) = p
+				!			phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+				!			
+				!		else
+				!			u = 0.0
+				!			v = 0.0
+				!			rho = 1.0
+				!			p= 0.01
+				!			phi(i,j,k, 1) = rho
+				!			phi(i,j,k, 2) = rho * u
+				!			phi(i,j,k, 3) = rho * v
+				!			phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+				!			phi(i,j,k, 5) = u
+				!			phi(i,j,k, 6) = v
+				!			phi(i,j,k, 7) = p
+				!			phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+				!		end 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ !	 do k=lo(3),hi(3)
+!		do j=lo(2),hi(2)
+	
+!			do i=lo(1),hi(1)
+			
+!			x = i * dx(1) + 0.5 * dx(1)
+			!	 tempangle =  j * (1.0d0/64.0d0)/ tan(0.6108652382)   
+!				if( x .lt. 0.5d0)then
+!							u = 0.0
+!							v = 0.0
+!							rho = 1.0
+!							p = 1000
+!							phi(i,j,k, 1) = rho
+!							phi(i,j,k, 2) = rho * u
+!							phi(i,j,k, 3) = rho * v
+!							phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+!							phi(i,j,k, 5) = u
+!							phi(i,j,k, 6) = v
+!							phi(i,j,k, 7) = p
+!							phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+						
+!						else
+!							u = 0.0
+!							v = 0.0
+!							rho = 1.0
+!							p= 0.01
+!							phi(i,j,k, 1) = rho
+!							phi(i,j,k, 2) = rho * u
+!							phi(i,j,k, 3) = rho * v
+!							phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+!							phi(i,j,k, 5) = u
+!							phi(i,j,k, 6) = v
+!							phi(i,j,k, 7) = p
+!							phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+!				end if
+!			end do
+!		end do
+!	end do
+ 
+ 
+
+!---------------------    WAVESPEED_ESTIMATE  ----------------------!
+  
+  subroutine P_BASED_WAVESPEED( PL, PR, VNormL, VNormR, RHOL, RHOR, WAVESPEED)
+  
+  use global_var_module
+  use auxiliary_module
+  
+  implicit none
+  
+  double precision, intent(in) :: PL, PR, VNormL, VNormR, RHOL, RHOR
+  double precision, intent(inout) :: WAVESPEED(2)
+  double precision :: AL, AR, A_BAR
+  double precision :: RHO_BAR
+  double precision :: PPVRS, PSTAR
+  double precision :: Q_L, Q_R
+  
+  AL = DSQRT( Gamma * (PL/RHOL))
+  AR = DSQRT(Gamma * (PR/RHOR))
+  A_BAR = 0.5d0 * (AL+AR)
+  RHO_BAR = 0.5d0 * (RHOL + RHOR)
+  
+  PPVRS = 0.5d0 * (PL + PR) - 0.5d0 * (VNormR - VNormL) * RHO_BAR * A_BAR
+  PSTAR = MAX( 0.0, PPVRS )
+   
+    if ( PSTAR .LE. PL ) then 
+    
+		Q_L = 1 
+		
+	else 
+	
+	
+	
+		Q_L =  DSQRT( 1 + ( Gamma + 1 )/( 2*Gamma )* &
+		    &  ( PSTAR / PL - 1 ) )    
+    
+    end if 
+    
+    if (PSTAR .LE. PR ) then 
+    
+		Q_R = 1 
+		
+	else 
+
+	
+	
+		Q_R =  DSQRT( 1 + ( Gamma + 1 )/( 2*Gamma )* &
+		    &  ( PSTAR/PR ) - 1 )   
+    
+    end if 
+    
+    WAVESPEED(1) = VNormL - AL * Q_L
+    WAVESPEED(2) = VNormR + AR * Q_R    
+              
+  
+  end subroutine P_BASED_WAVESPEED
+  
+  
+  
+  
+     !---------------------  STAR_STATE  ----------------------!
+     
+     
+   subroutine Q_STAR(DIRPARAM, SK, SSTAR, VNormK, PK, RHOK, VTanK, EK, QKSTAR)
+   
+   use global_var_module
+   	use auxiliary_module
+   implicit none 
+   integer, intent(in) :: DIRPARAM
+   double precision, intent(in) :: SK, SSTAR, VNormK, PK, RHOK, VTanK, EK
+   double precision, intent(inout) :: QKSTAR(nVarQ)
+   double precision :: ft
+   
+   ft = RHOK * ((SK - VNormK)/(SK - SSTAR))
+   QKSTAR (1) = ft
+   QKSTAR (4) = ft * ( EK / RHOK + ( SStar - VNormK )*(  &
+                 & SStar + PK/( RHOK*( SK - VNormK) ) ) ) 
+                 
+  
+    if ( DIRPARAM == 0 ) then 
+
+		QKSTAR ( 2 ) = ft*SSTAR 
+		QKSTAR ( 3 ) = ft*VTanK
+
+    else 
+ 
+		QKSTAR ( 2 ) = ft*VTanK
+		QKSTAR ( 3 ) = ft*SSTAR 
+
+    end if 
+    
+   end subroutine Q_STAR
+   
+  
+  !----------------------    HLLC FLUX    -----------------------------!
+  
+  
+  subroutine HLLC_FLUX( DIRPARAM, QL, QR, FLUX )
+
+    use global_var_module
+    use auxiliary_module
+    
+	implicit none
+	integer, intent(in)::DIRPARAM
+	double precision, intent(in)::QL(nVarQ)
+	double precision, intent(in)::QR(nVarQ)
+	double precision, intent(inout):: FLUX(nVarQ)
+	double precision :: WL(nVarQ), WR(nVarQ)
+	double precision :: PL, PR, RHOL, RHOR, VNormL, VNormR, VTanL, VTanR, EL, ER
+	double precision :: SL, SR, SSTAR
+	double precision :: FL(nVarQ), FR(nVArQ)
+	double precision :: FSTARL(nVarQ), FSTARR(nVarQ)
+	integer :: i
+	double precision :: WAVESPEED(2)
+	double precision ::  QLSTAR(nVarQ),  QRSTAR(nVarQ)
+	!-----Wavespeed EStimate--------!
+	
+
+	
+    call C2P( (/1,1/),(/1,1/),QL, WL ) ;
+    call C2P( (/1,1/),(/1,1/),QR, WR ) ;
+    
+    RHOL = WL(1)
+    RHOR = WR(1)
+    PL = WL(4)
+    PR = WR(4)
+        
+    if ( DIRPARAM == 0 ) then
+    
+		VNormL = WL( 2 )  
+		VNormR = WR( 2 ) 
+		VTanL  = WL( 3 )
+		VTanR  = WR( 3 )    
+    
+    else 
+    
+		VNormL = WL( 3 )  
+		VNormR = WR( 3 ) 
+		VTanL  = WL( 2 )
+		VTanR  = WR( 2 )    
+    
+    end if 
+
+    
+	call P_BASED_WAVESPEED(PL, PR, VNormL, VNormR, RHOL, RHOR, WAVESPEED)
+
+	SL = WAVESPEED(1)
+	SR = WAVESPEED(2)
+	
+   !----------------------------Star State-----------------------------!
+    
+    SSTAR= ( PR - PL + RHOL * VNormL*( SL - VNormL ) - &
+          &   RHOR * VNormR*( SR - VNormR ) )/( RHOL * ( SL - &
+          &   VNormL ) - RHOR*( SR - VNormR ) ) 
+              
+	    
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QL, FL)  
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QR, FR)  
+
+ 
+    call Q_STAR( DIRPARAM, SL, SSTAR, VNormL, PL, RHOL, VTanL, QL(4), QLSTAR)
+    call Q_STAR( DIRPARAM, SR, SSTAR, VNormR, PR, RHOR, VTanR, QR(4), QRSTAR)
+
+    do i = 1, nVarQ
+    
+		FSTARL( i ) = FL( i ) + SL*( QLSTAR( i ) - QL( i ) ) 	
+		FSTARR( i ) = FR( i ) + SR*( QRSTAR( i ) - QR( i ) ) 		
+		    
+    end do 
+    
+    
+  !------------------------------ HLLC FLUX ---------------------------!
+   if ( SL .GE. 0.d0 ) then 
+    
+		FLUX( : ) = FL( : ) 
+    
+    end if 
+    
+    if ( SL .LT. 0.d0 .AND. SSTAR .GE. 0.d0   ) then 
+    
+		FLUX( : ) = FSTARL( : ) 
+    
+    end if 
+    
+    if ( SSTAR .LT. 0.d0 .AND. SR .GE. 0.d0   ) then 
+    
+		FLUX( : ) = FSTARR( : ) 
+    
+    end if 
+    
+    if ( SR .LT. 0.d0 ) then 
+    
+		FLUX( : )  = FR( : ) 
+
+    end if 	
+	
+  end subroutine  HLLC_FLUX
+  
+  
+   
+   !-----------------------------MUSCL HANCOCK-------------------------!
+   
+   subroutine MSCLE_HANCOCK( DIRPARAM,QLL,QL,QR,QRR,dt,dxy,FLUX)
+   
+	use global_var_module
+	use auxiliary_module
+	
+	implicit none
+	
+	integer, intent( in ) :: DIRPARAM
+	double precision, intent ( in ) :: dt, dxy 
+	double precision, intent ( in ) :: QLL( nVarQ ), QL( nVarQ ), &
+	                                   QR( nVarQ ), QRR( nVarQ )
+	double precision,intent ( inout ) ::FLUX( nVarQ ) 
+	
+	double precision :: QUPDATEL(2, nVarQ), QUPDATER(2, nVarQ)
+	double precision :: QExLL( nVarQ ), QExLR( nVarQ ), &
+	                    QExRL( nVarQ ), QExRR( nVarQ ), &
+	                    QEvL( nVarQ ), QEvR( nVarQ ) 
+	                    
+	double precision :: FLL( nVarQ ), FLR( nVarQ ), FRL( nVarQ ), & 
+	                    FRR( nVarQ )
+	                    
+	integer :: i 
+	
+	
+	print*, "I am working here"
+
+	call DATA_RECONSTRUCTION( QLL, QL, QR,  QUPDATEL)           
+	
+	QExLL ( : ) = QUPDATEL( 1, : )       
+	QExLR ( : ) = QUPDATEL( 2, : )    
+	
+
+		
+	call DATA_RECONSTRUCTION( QL, QR, QRR,  QUPDATER)           
+	QExRL ( : ) = QUPDATER( 1, : )       
+	QExRR ( : ) = QUPDATER( 2, : )    
+		
+
+		
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExLL, FLL)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExLR, FLR)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExRL, FRL)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExRR, FRR)    
+	
+	!print*, "I am working here 4 "
+	
+	QEvL( : ) = QExLR( : ) + 0.5d0*dt/dxy*( FLL( : ) - FLR( : ) ) 
+	QEvR( : ) = QExRL( : ) + 0.5d0*dt/dxy*( FRL( : ) - FRR( : ) ) 
+	
+	print*, "I am working here 5 "
+	
+	call HLLC_FLUX( DIRPARAM, QEvL, QEvR, FLUX) 
+	    	
+   end subroutine  MSCLE_HANCOCK
+   
+
+  
+ subroutine DATA_RECONSTRUCTION( QL, QC, QR, QUPDATE ) 
+  
+	use global_var_module
+  
+	implicit none
+	
+	double precision, intent ( in ) :: QL( nVarQ ), QC( nVarQ ), &
+	                                   QR( nVarQ )  
+	double precision,intent ( inout ) :: QUPDATE( 2, nVarQ )
+	
+	double precision :: di1, di2, r,  SlopeLimiter
+	double precision :: SlopeLR, TOL
+	double precision ::di,sdi, Omega, BetaCR
+	integer :: i 
+	Omega = 0.d0  
+	BetaCR = 1.d0 
+	TOL = 1E-10 
+	
+	
+	do i = 1, nVarQ
+	
+!	write(*,*)"QC(i)", QC(i),"QL(i)", QL(i)
+		di1 = QC( i ) - QL( i ) 
+		di2 = QR( i ) - QC( i ) 
+
+!	write(*,*)"di2", di2,"di1", di1
+		
+		if ( ABS( di2 ) .LT. TOL ) then 
+					
+			di2 = TOL 
+			
+		!	write(*,*)"di2", di2
+				
+			if ( ABS( di1 ) .LT. TOL ) then 
+				
+				r = 1.d0 
+				
+			!	write(*,*)"di1", di1
+				
+			else 
+				
+				r = di1/di2 
+				
+				if ( r .NE. r .OR. r .GE. HUGE(TOL) ) then 
+			
+			       r = 0.d0 ;
+			
+				end if  
+				
+			end if 
+			
+		else
+			
+			r = di1/di2  			
+			
+		end if 		
+!		write(*,*)"r", r
+		
+		SlopeLR= 2.d0*BetaCR/(( 1.d0 - Omega )+ &
+		          & ( 1.d0 + Omega )*r) 
+		           		
+		call SLOPE_LIMITER(r, SlopeLR, SlopeLimiter)
+
+	    di = 0.5d0*( 1.d0 + Omega )*di1+ &
+		      & 0.5d0*( 1.d0 - Omega )*di2		
+		sdi = SlopeLimiter * di
+
+	
+		QUPDATE(1,  i ) =  QC(i) - 0.5 * sdi
+		QUPDATE(2,  i ) =  QC(i) + 0.5 * sdi
+			
+			
+	end do             
+	                    
+	             
+
+end subroutine DATA_RECONSTRUCTION
+  !----------------------   SLOPE LIMITER   ----------------------------
+  
+  
+  subroutine SLOPE_LIMITER(r, SlopLR, SlopeLimiter ) 
+  
+	use global_var_module
+  
+	implicit none
+	
+	double precision, intent ( in ) :: r, SlopLR
+
+	double precision,intent ( inout ) :: SlopeLimiter 
+	
+
+	if ( r .LT. 0.d0 ) then 
+					
+		SlopeLimiter  = 0.d0 
+					
+	end if 
+				
+	if ( r .GE. 0.d0 .AND. r .LT. 0.5d0 ) then 
+					
+		SlopeLimiter  = 2.d0*r
+					
+	end if 
+				
+	if ( r .GE. 0.5d0 .AND. r .LT. 1.d0 ) then 
+					
+		SlopeLimiter  = 1.d0 
+					
+	end if
+				
+	if ( r .GE. 1.d0 ) then 
+					
+		SlopeLimiter  = MIN( 2.d0, MIN( r, SlopLR) )
+					
+	end if
+		
+	     
+  end subroutine SLOPE_LIMITER
+
+
+
+
+
+!-------------------  Initalised outer Domain  ---------------------!  
+
+	do k=lo(3),hi(3)
+		do j=lo(2),hi(2)
+			do i=lo(1),hi(1)
+				u = 0.0
+				v = 0.0
+				rho = 0.125
+				p = 0.1
+				phi(i,j,k, 1) = rho
+		    	phi(i,j,k, 2) = rho * u
+				phi(i,j,k, 3) = rho * v
+				phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+			    phi(i,j,k, 5) = u
+				phi(i,j,k, 6) = v
+				phi(i,j,k, 7) = p
+				phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+			end do
+		end do
+	end do
+
+			
+				
+				
+!------------------- Initialise Inner Domain  ---------------------!
+
+
+ temp = 0
+ DfC = dx(2) * temp
+ 
+ 
+	do k=lo(3),hi(3)
+			do j= int(Ncell/2), hi(2)
+	
+				if(DfC <0.4d0) then
+		   
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+					do i= int(Ncell/2), (Ncell/2)+(tempLength)
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+					
+					do i= int(Ncell/2), (Ncell/2)-(tempLength), -1
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+			
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+
+			end do
+		end do 
+
+ temp = 0
+ DfC = dx(2) * temp
+ 
+	do k=lo(3),hi(3)
+			do j= int(Ncell/2), 0, -1
+	
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+
+					do i= int(Ncell/2), (int(Ncell/2)+tempLength)
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+					do i= int(Ncell/2), (int(Ncell/2)-tempLength), -1
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+				
+				end if
+	    
+			temp =temp+1
+			DfC = dx(2)*temp
+		end do
+	end do 
+	
+	
+
+
+
+
+
+
+
+
+module compute_flux_module
+
+  implicit none
+
+  private :: HLLC_FLUX, MSCLE_HANCOCK, &
+             DATA_RECONSTRUCTION, SLOPE_LIMITER
+
+  public :: compute_flux_2d
+
+contains
+
+  subroutine compute_flux_2d(DIRPARAM, lo, hi, dt, dx, &
+                             phi,ph_lo,ph_hi, &
+                             flxx, fx_lo, fx_hi, &
+                             flxy, fy_lo, fy_hi)
+
+    use global_var_module
+    
+	implicit none
+    
+    integer, intent(in) :: lo(2), hi(2)
+    integer, intent(in) :: ph_lo(2), ph_hi(2)
+    integer, intent(in) :: fx_lo(2), fx_hi(2)
+    integer, intent(in) :: fy_lo(2), fy_hi(2)
+    
+    integer, intent(in) :: DIRPARAM	
+    
+    double precision, intent(in) :: dt, dx(2)
+    double precision, intent(in) :: phi (ph_lo(1):ph_hi(1), &
+                                         ph_lo(2):ph_hi(2),nVar)    
+
+    double precision, intent(out) :: flxx(fx_lo(1):fx_hi(1), &
+                                          fx_lo(2):fx_hi(2),nVar)
+    double precision, intent(out) :: flxy(fy_lo(1):fy_hi(1), &
+                                          fy_lo(2):fy_hi(2),nVar)
+    
+    double precision :: QL( nVarQ ), QR( nVarQ ), QLL( nVarQ ), &
+                        QRR( nVarQ ), NUM_FLUX( nVarQ )      
+    integer :: i, j
+    
+    
+    flxx(:,:,:) = 0.d0 
+    flxy(:,:,:)= 0.d0 
+    
+
+    
+    if ( DIRPARAM == 0 ) then 
+
+    !--------------------- FLUX IN THE X DIR ---------------------------
+    	
+		do j = lo(2),hi(2)
+			do i = lo(1), hi(1) +1
+			    
+			    QLL = phi(i-2,j,1:nVarQ)
+				QL  = phi(i-1,j,1:nVarQ)
+			    QR  = phi(i,j,1:nVarQ)
+			    QRR = phi(i+1,j,1:nVarQ)		    
+		
+			!	call HLLC_FLUX ( DIRPARAM, QL, QR, NUM_FLUX ) 
+	            		   
+				call MSCLE_HANCOCK( DIRPARAM, QLL, QL, QR, QRR, &
+					                    & dt, dx( 2 ), NUM_FLUX )  
+				flxx(i,j,1:nVarQ) = NUM_FLUX( : )
+				
+			end do
+			
+		end do
+	
+	else if ( DIRPARAM == 1 ) then 		
+	
+!	write(*,*)"Density",phi(:,:,1)
+!	write(*,*)"ph(32,0)",phi(32,0,  1)
+	!--------------------- FLUX IN THE Y DIR ---------------------------
+
+		do j = lo(2),hi(2) +1
+		  
+			do i = lo(1), hi(1) 
+
+		        QLL = phi(i,j-2,1:nVarQ)
+				QL  = phi(i,j-1,1:nVarQ)
+			    QR  = phi(i,j,1:nVarQ)
+			    QRR = phi(i,j+1,1:nVarQ)
+	!	    	 write(*,*)"QLL", QLL, "QL",QL ,"QR", QR, "QRR", QRR, i ,j
+  
+  
+			!	call HLLC_FLUX ( DIRPARAM, QL, QR, NUM_FLUX ) 
+			    
+					call MSCLE_HANCOCK( DIRPARAM, QLL, QL, QR, QRR, &
+					                    & dt, dx( 2 ), NUM_FLUX )  
+		
+				flxy(i,j,1:nVarQ) = NUM_FLUX( : )
+						
+			end do
+		end do
+			
+	end if	
+	   
+
+  end subroutine compute_flux_2d
+  
+  
+   !---------------------    WAVESPEED_ESTIMATE  ----------------------!
+  
+  subroutine P_BASED_WAVESPEED( PL, PR, VNormL, VNormR, RHOL, RHOR, WAVESPEED)
+  
+  use global_var_module
+  use auxiliary_module
+  
+  implicit none
+  
+  double precision, intent(in) :: PL, PR, VNormL, VNormR, RHOL, RHOR
+  double precision, intent(inout) :: WAVESPEED(2)
+  double precision :: AL, AR, A_BAR
+  double precision :: RHO_BAR
+  double precision :: PPVRS, PSTAR
+  double precision :: Q_L, Q_R
+  
+  
+  	write(*,*) "PL/RHOL", PL/RHOL, "PL", PL , "RHOL",  RHOL
+  	
+  	write(*,*) "PR/RHOR", PR/RHOR, "PL", PR , "RHOL",  RHOR
+  	
+  AL = DSQRT( Gamma * (PL/RHOL))
+  AR = DSQRT(Gamma * (PR/RHOR))
+  A_BAR = 0.5d0 * (AL+AR)
+  RHO_BAR = 0.5d0 * (RHOL + RHOR)
+  
+  PPVRS = 0.5d0 * (PL + PR) - 0.5d0 * (VNormR - VNormL) * RHO_BAR * A_BAR
+  PSTAR = MAX( 0.0, PPVRS )
+   
+    if ( PSTAR .LE. PL ) then 
+    
+		Q_L = 1 
+		
+	else 
+	
+	write(*,*) "PSTAR / PL", PSTAR / PL, "PSTAR", PSTAR , "PL",  PL
+
+		Q_L =  DSQRT( 1 + ( Gamma + 1 )/( 2*Gamma )* &
+		    &  ( PSTAR / PL - 1 ) )    
+    
+    end if 
+    
+    if (PSTAR .LE. PR ) then 
+    
+		Q_R = 1 
+		
+	else 
+
+	
+	
+		Q_R =  DSQRT( 1 + ( Gamma + 1 )/( 2*Gamma )* &
+		    &  ( PSTAR/PR ) - 1 )   
+    
+    end if 
+    
+    WAVESPEED(1) = VNormL - AL * Q_L
+    WAVESPEED(2) = VNormR + AR * Q_R    
+              
+  
+  end subroutine P_BASED_WAVESPEED
+  
+  
+  
+  
+     !---------------------  STAR_STATE  ----------------------!
+     
+     
+   subroutine Q_STAR(DIRPARAM, SK, SSTAR, VNormK, PK, RHOK, VTanK, EK, QKSTAR)
+   
+   use global_var_module
+   	use auxiliary_module
+   implicit none 
+   integer, intent(in) :: DIRPARAM
+   double precision, intent(in) :: SK, SSTAR, VNormK, PK, RHOK, VTanK, EK
+   double precision, intent(inout) :: QKSTAR(nVarQ)
+   double precision :: ft
+   
+   ft = RHOK * ((SK - VNormK)/(SK - SSTAR))
+   QKSTAR (1) = ft
+   QKSTAR (4) = ft * ( EK / RHOK + ( SStar - VNormK )*(  &
+                 & SStar + PK/( RHOK*( SK - VNormK) ) ) ) 
+                 
+  
+    if ( DIRPARAM == 0 ) then 
+
+		QKSTAR ( 2 ) = ft*SSTAR 
+		QKSTAR ( 3 ) = ft*VTanK
+
+    else 
+ 
+		QKSTAR ( 2 ) = ft*VTanK
+		QKSTAR ( 3 ) = ft*SSTAR 
+
+    end if 
+    
+   end subroutine Q_STAR
+   
+  
+  !----------------------    HLLC FLUX    -----------------------------!
+  
+  
+  subroutine HLLC_FLUX( DIRPARAM, QL, QR, FLUX )
+
+    use global_var_module
+    use auxiliary_module
+    
+	implicit none
+	integer, intent(in)::DIRPARAM
+	double precision, intent(in)::QL(nVarQ)
+	double precision, intent(in)::QR(nVarQ)
+	double precision, intent(inout):: FLUX(nVarQ)
+	double precision :: WL(nVarQ), WR(nVarQ)
+	double precision :: PL, PR, RHOL, RHOR, VNormL, VNormR, VTanL, VTanR, EL, ER
+	double precision :: SL, SR, SSTAR
+	double precision :: FL(nVarQ), FR(nVArQ)
+	double precision :: FSTARL(nVarQ), FSTARR(nVarQ)
+	integer :: i
+	double precision :: WAVESPEED(2)
+	double precision ::  QLSTAR(nVarQ),  QRSTAR(nVarQ)
+	!-----Wavespeed EStimate--------!
+	
+print*, "I amworking here6"
+	
+    call C2P( (/1,1/),(/1,1/),QL, WL ) ;
+    call C2P( (/1,1/),(/1,1/),QR, WR ) ;
+    
+    RHOL = WL(1)
+    RHOR = WR(1)
+    PL = WL(4)
+    PR = WR(4)
+        
+    if ( DIRPARAM == 0 ) then
+    
+		VNormL = WL( 2 )  
+		VNormR = WR( 2 ) 
+		VTanL  = WL( 3 )
+		VTanR  = WR( 3 )    
+    
+    else 
+    
+		VNormL = WL( 3 )  
+		VNormR = WR( 3 ) 
+		VTanL  = WL( 2 )
+		VTanR  = WR( 2 )    
+    
+    end if 
+
+    print*, "I amworking here 7"
+	
+	call P_BASED_WAVESPEED(PL, PR, VNormL, VNormR, RHOL, RHOR, WAVESPEED)
+
+	SL = WAVESPEED(1)
+	SR = WAVESPEED(2)
+	
+	print*, "I amworking here 8"
+	
+   !----------------------------Star State-----------------------------!
+    
+    SSTAR= ( PR - PL + RHOL * VNormL*( SL - VNormL ) - &
+          &   RHOR * VNormR*( SR - VNormR ) )/( RHOL * ( SL - &
+          &   VNormL ) - RHOR*( SR - VNormR ) ) 
+              
+	print*, "I amworking here 9"
+	    
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QL, FL)  
+    call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QR, FR)  
+
+	print*, "I amworking here 10"
+ 
+    call Q_STAR( DIRPARAM, SL, SSTAR, VNormL, PL, RHOL, VTanL, QL(4), QLSTAR)
+    call Q_STAR( DIRPARAM, SR, SSTAR, VNormR, PR, RHOR, VTanR, QR(4), QRSTAR)
+
+	print*, "I am working here 11"
+
+    do i = 1, nVarQ
+    
+		FSTARL( i ) = FL( i ) + SL*( QLSTAR( i ) - QL( i ) ) 	
+		FSTARR( i ) = FR( i ) + SR*( QRSTAR( i ) - QR( i ) ) 		
+		    
+    end do 
+    
+    print*, "I am working here 12"
+    
+  !------------------------------ HLLC FLUX ---------------------------!
+ 
+   print*, "I am working here 13"
+ 
+   if ( SL .GE. 0.d0 ) then 
+    
+		FLUX( : ) = FL( : ) 
+    
+    end if 
+    
+    if ( SL .LT. 0.d0 .AND. SSTAR .GE. 0.d0   ) then 
+    
+		FLUX( : ) = FSTARL( : ) 
+    
+    end if 
+    
+    if ( SSTAR .LT. 0.d0 .AND. SR .GE. 0.d0   ) then 
+    
+		FLUX( : ) = FSTARR( : ) 
+    
+    end if 
+    
+    if ( SR .LT. 0.d0 ) then 
+    
+		FLUX( : )  = FR( : ) 
+
+    end if 	
+	
+  end subroutine  HLLC_FLUX
+  
+  
+   
+   !-----------------------------MUSCL HANCOCK-------------------------!
+   
+   subroutine MSCLE_HANCOCK( DIRPARAM,QLL,QL,QR,QRR,dt,dxy,FLUX)
+   
+	use global_var_module
+	use auxiliary_module
+	
+	implicit none
+	
+	integer, intent( in ) :: DIRPARAM
+	double precision, intent ( in ) :: dt, dxy 
+	double precision, intent ( in ) :: QLL( nVarQ ), QL( nVarQ ), &
+	                                   QR( nVarQ ), QRR( nVarQ )
+	double precision,intent ( inout ) ::FLUX( nVarQ ) 
+	
+	double precision :: QUPDATEL(2, nVarQ), QUPDATER(2, nVarQ)
+	double precision :: QExLL( nVarQ ), QExLR( nVarQ ), &
+	                    QExRL( nVarQ ), QExRR( nVarQ ), &
+	                    QEvL( nVarQ ), QEvR( nVarQ ) 
+	                    
+	double precision :: FLL( nVarQ ), FLR( nVarQ ), FRL( nVarQ ), & 
+	                    FRR( nVarQ )
+	                    
+	integer :: i 
+	
+	
+	print*, "I am working here"
+
+	call DATA_RECONSTRUCTION( QLL, QL, QR,  QUPDATEL)           
+	
+	QExLL ( : ) = QUPDATEL( 1, : )       
+	QExLR ( : ) = QUPDATEL( 2, : )    
+	
+
+		
+	call DATA_RECONSTRUCTION( QL, QR, QRR,  QUPDATER)           
+	QExRL ( : ) = QUPDATER( 1, : )       
+	QExRR ( : ) = QUPDATER( 2, : )    
+		
+
+		
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExLL, FLL)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExLR, FLR)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExRL, FRL)
+	call FLUX_FUNCT(DIRPARAM, (/1,1/), (/1,1/), QExRR, FRR)    
+	
+	print*, "I am working here 4 "
+	
+	QEvL( : ) = QExLR( : ) + 0.5d0*dt/dxy*( FLL( : ) - FLR( : ) ) 
+	QEvR( : ) = QExRL( : ) + 0.5d0*dt/dxy*( FRL( : ) - FRR( : ) ) 
+	
+	print*, "I am working here 5 "
+	
+	call HLLC_FLUX( DIRPARAM, QEvL, QEvR, FLUX) 
+	    	
+   end subroutine  MSCLE_HANCOCK
+   
+
+  
+ subroutine DATA_RECONSTRUCTION( QL, QC, QR, QUPDATE ) 
+  
+	use global_var_module
+  
+	implicit none
+	
+	double precision, intent ( in ) :: QL( nVarQ ), QC( nVarQ ), &
+	                                   QR( nVarQ )  
+	double precision,intent ( inout ) :: QUPDATE( 2, nVarQ )
+	
+	double precision :: di1, di2, r,  SlopeLimiter
+	double precision :: SlopeLR, TOL
+	double precision ::di,sdi, Omega, BetaCR
+	integer :: i 
+	Omega = 0.d0  
+	BetaCR = 1.d0 
+	TOL = 1E-10 
+	
+	
+	do i = 1, nVarQ
+	
+		di1 = QC( i ) - QL( i ) 
+		di2 = QR( i ) - QC( i ) 
+
+		
+		if ( ABS( di2 ) .LT. TOL ) then 
+					
+			di2 = TOL 
+			
+			
+				
+			if ( ABS( di1 ) .LT. TOL ) then 
+				
+				r = 1.d0 
+				
+			!	write(*,*)"di1", di1
+				
+			else 
+				
+				r = di1/di2 
+				
+				if ( r .NE. r .OR. r .GE. HUGE(TOL) ) then 
+			
+			       r = 0.d0 ;
+			
+				end if  
+				
+			end if 
+			
+		else
+			
+			r = di1/di2  			
+			
+		end if 		
+
+		SlopeLR= 2.d0*BetaCR/(( 1.d0 - Omega )+ &
+		          & ( 1.d0 + Omega )*r) 
+		           		
+		call SLOPE_LIMITER(r, SlopeLR, SlopeLimiter)
+
+	    di = 0.5d0*( 1.d0 + Omega )*di1+ &
+		      & 0.5d0*( 1.d0 - Omega )*di2		
+		sdi = SlopeLimiter * di
+
+	
+		QUPDATE(1,  i ) =  QC(i) - 0.5 * sdi
+		QUPDATE(2,  i ) =  QC(i) + 0.5 * sdi
+			
+			
+	end do             
+	                    
+	             
+
+end subroutine DATA_RECONSTRUCTION
+  !----------------------   SLOPE LIMITER   ----------------------------
+  
+  
+  subroutine SLOPE_LIMITER(r, SlopLR, SlopeLimiter ) 
+  
+	use global_var_module
+  
+	implicit none
+	
+	double precision, intent ( in ) :: r, SlopLR
+
+	double precision,intent ( inout ) :: SlopeLimiter 
+	
+
+	if ( r .LT. 0.d0 ) then 
+					
+		SlopeLimiter  = 0.d0 
+					
+	end if 
+				
+	if ( r .GE. 0.d0 .AND. r .LT. 0.5d0 ) then 
+					
+		SlopeLimiter  = 2.d0*r
+					
+	end if 
+				
+	if ( r .GE. 0.5d0 .AND. r .LT. 1.d0 ) then 
+					
+		SlopeLimiter  = 1.d0 
+					
+	end if
+				
+	if ( r .GE. 1.d0 ) then 
+					
+		SlopeLimiter  = MIN( 2.d0, MIN( r, SlopLR) )
+					
+	end if
+		
+	     
+  end subroutine SLOPE_LIMITER
+  
+end module compute_flux_module
+
+
+
+
+
+
+	
+	
+
+!-------------------  Initalised outer Domain  ---------------------!  
+	 do k=lo(3),hi(3)
+		do j=lo(2),hi(2)
+	
+			do i=lo(1),hi(1)
+				u = 0.0
+				v = 0.0
+				rho = 0.125
+				p = 0.1
+				phi(i,j,k, 1) = rho
+		    	phi(i,j,k, 2) = rho * u
+				phi(i,j,k, 3) = rho * v
+				phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+			    phi(i,j,k, 5) = u
+				phi(i,j,k, 6) = v
+				phi(i,j,k, 7) = p
+				phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+				
+			end do
+		end do
+	end do
+
+
+			
+				
+				
+!------------------- Initialise Inner Domain  ---------------------!
+
+
+ temp = 0
+ DfC = dx(2) * temp
+ 
+ !
+ !box one
+ !
+
+if (lo(1) == (Ncell/4) .and. hi(1) == (Ncell/2-1) .and. lo(2)==(Ncell/2 ) .and. hi(2)==(3*Ncell/4) -1 ) then 
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+	!print*, "I am here in Box 1"
+		do k=lo(3),hi(3)
+			do j=lo(2),hi(2)
+				
+				!print*, "I am here in Box 1"
+	
+				if(DfC <0.4d0) then
+		    
+					do i=hi(1), (hi(1) - tempLength), -1
+		  		        u = 0.0
+			         	v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+				    	phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v				
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+				
+			
+				end if
+	
+				temp =temp+1
+				DfC = dx(2)*temp
+		    
+			end do
+		end do 
+	!  !$omp end parallel do
+	
+	end if 
+
+ temp = 0
+ DfC = dx(2) * temp
+
+!
+!box two
+!
+
+if (lo(1) == (Ncell/2) .and. hi(1) == ( 3 * Ncell/4 -1)  .and. lo(2)==(Ncell/2) .and. hi(2)==(3*Ncell/4) -1 ) then 
+	
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=lo(2),hi(2)
+!	print*, "I am here in Box 2"
+	
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+					do i=lo(1),lo(1)+(tempLength)
+!print*, "I am here in Box 2"
+	
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+			
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+
+			end do
+		end do 
+		
+!	  !$omp end parallel do
+	end if 
+
+
+
+  temp = 0
+  DfC = dx(2) * temp
+  
+  
+  
+  
+!
+!box three
+!
+
+if (lo(1) == (Ncell/4) .and. hi(1) == (Ncell/2-1)  .and. lo(2)==(Ncell/4) .and. hi(2)==(Ncell/2) -1 ) then 
+	
+	
+  !!$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=hi(2), lo(2), -1
+!print*, "I am here in Box 3"
+	
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2))
+					do i= hi(1), (hi(1)-tempLength), -1
+	!					print*, "I am in Box Three2"
+
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do	
+			
+				end if
+		    
+				temp =temp+1
+				DfC = dx(2)*temp
+			end do
+		end do 
+!	  !$omp end parallel do
+	end if 
+
+
+  temp = 0
+  DfC = dx(2) * temp
+
+
+!
+!box four
+!
+if (lo(1) == (Ncell/2) .and. hi(1) == (3*Ncell/4-1)  .and. lo(2)==(Ncell/4) .and. hi(2)==(Ncell/2) -1 ) then 
+	
+	
+ ! !$omp parallel do private(i,j,k,x,y,z, rho, p) collapse(2)
+		do k=lo(3),hi(3)
+			do j=hi(2), lo(2), -1
+!			print*, "I am here in Box 4"
+	
+				if(DfC <0.4d0) then
+		    
+					tempLength = int(sqrt(0.4**2 - (DfC**2)) * (Ncell/2) )
+					do i= lo(1), (lo(1)+tempLength)
+!	print*, "I am here in Box 4"
+	
+						u = 0.0
+						v = 0.0
+						rho = 1.0
+						p = 1.0
+						phi(i,j,k, 1) = rho
+						phi(i,j,k, 2) = rho * u
+						phi(i,j,k, 3) = rho * v
+						phi(i,j,k, 4) = p /( Gamma - 1.d0 )  + 0.5d0 * rho * (u**2.d0 + v**2.d0)
+						phi(i,j,k, 5) = u
+						phi(i,j,k, 6) = v
+						phi(i,j,k, 7) = p
+						phi(i,j,k, 8) = p /( Gamma - 1.d0 )
+					end do
+
+				end if
+	    
+			temp =temp+1
+			DfC = dx(2)*temp
+		end do
+	end do 
+	!  !$omp end parallel do
+end if 
+
+
+
+  

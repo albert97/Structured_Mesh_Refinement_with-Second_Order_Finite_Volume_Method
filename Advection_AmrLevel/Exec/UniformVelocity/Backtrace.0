@@ -1,0 +1,21 @@
+=== Please note that the line number reported by addr2line may not be accurate.
+    If necessary, one can use 'readelf -wl my_exefile | grep my_line_address'
+    to find out the offset for that line.
+ 0: /lsc/opt/visit/3.0.2/linux-x86_64/plugins/databases/libMBoxlib3DDatabase.so(_ZN11BLBackTrace20print_backtrace_infoEP8_IO_FILE+0x3d) [0x7f7f1dc3624d]
+
+ 1: /lsc/opt/visit/3.0.2/linux-x86_64/plugins/databases/libMBoxlib3DDatabase.so(_ZN11BLBackTrace7handlerEi+0x405) [0x7f7f1dc36cd5]
+
+ 2: /lib/x86_64-linux-gnu/libc.so.6(+0x3ef20) [0x7f7f25a93f20]
+
+ 3: /lib/x86_64-linux-gnu/libc.so.6(__select+0x17) [0x7f7f25b6bff7]
+
+ 4: /lsc/opt/visit/3.0.2/linux-x86_64/lib/libvisitcommon.so(_ZN15ConnectionGroup10CheckInputEv+0x18a) [0x7f7f26523eca]
+
+ 5: /lsc/opt/visit/3.0.2/linux-x86_64/bin/mdserver(+0xb214) [0x55a226c28214]
+
+ 6: /lsc/opt/visit/3.0.2/linux-x86_64/bin/mdserver(+0x1b0ef) [0x55a226c380ef]
+
+ 7: /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xe7) [0x7f7f25a76b97]
+
+ 8: /lsc/opt/visit/3.0.2/linux-x86_64/bin/mdserver(+0x88ca) [0x55a226c258ca]
+
